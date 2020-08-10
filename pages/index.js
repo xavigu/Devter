@@ -11,15 +11,16 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Bienvenido a <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-        <nav className={styles.nav}>
+          <h1 className={styles.title}>
+            Bienvenido a <a href="https://nextjs.org">Next.js!</a>
+          </h1>
+          <nav className={styles.nav}>
             <Link href='/timeline'>
-              Timeline
+              <a>
+                Timeline
+              </a>    
             </Link>
-        </nav>
-
+          </nav>
       </main>
     </div>
   )
