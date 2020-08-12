@@ -14,13 +14,6 @@ export default function Home() {
           <h1 className={styles.title}>
             Bienvenido a <a href="https://nextjs.org">Next.js!</a>
           </h1>
-          <nav className={styles.nav}>
-            <Link href='/timeline'>
-              <a>
-                Timeline
-              </a>    
-            </Link>
-          </nav>
       </main>
     </div>
   )
