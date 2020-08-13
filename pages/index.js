@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import AppLayout from '../components/AppLayout'
 import { colors } from '../styles/theme'
+import Button from '../components/Button'
 
 export default function Home() {
   return (
@@ -15,6 +16,9 @@ export default function Home() {
           <img src='/devter-logo.png' alt='Logo Devter'/>
           <h1> Bienvenido a Devter </h1>
           <h2>Talk about development with developers</h2>
+          <div>
+            <Button>Login with Github</Button>
+          </div>
         </section>
       </AppLayout>
       <style jsx>{`
@@ -23,6 +27,9 @@ export default function Home() {
           height: 100%;
           place-content: center;
           place-items: center;
+        }
+        div {
+          padding: 12px 0;
         }
         img {
           width: 120px;
