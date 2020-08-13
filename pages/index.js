@@ -2,6 +2,7 @@ import Head from 'next/head'
 import AppLayout from '../components/AppLayout'
 import { colors } from '../styles/theme'
 import Button from '../components/Button'
+import GitHub from '../components/Icons/Github'
 
 export default function Home() {
   return (
@@ -17,7 +18,9 @@ export default function Home() {
           <h1> Bienvenido a Devter </h1>
           <h2>Talk about development with developers</h2>
           <div>
-            <Button>Login with Github</Button>
+            <Button>
+               <GitHub fill='#fff' width={20} height={20}/> Login with Github
+            </Button>
           </div>
         </section>
       </AppLayout>
@@ -35,12 +38,12 @@ export default function Home() {
           width: 120px;
         }
         h1 {
-          color: ${colors.primary};
+          color: ${colors.secondary};
           font-weight: 800;
           margin-bottom: 16px;
         }
         h2 {
-          color: ${colors.secondary};
+          color: ${colors.primary};
           font-size: 20px;
           margin: 0;
         }
