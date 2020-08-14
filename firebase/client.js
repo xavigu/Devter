@@ -14,21 +14,31 @@ const firebaseConfig = {
 // si el numero de apps es 0 entonces si se inicializa firebase en caso contrario no lo hace
 !firebase.apps.length && firebase.initializeApp(firebaseConfig);
 
-export const loginWithGithub = () => {
-  const githubProvider = new firebase.auth.GithubAuthProvider();
-  return firebase.auth().signInWithPopup(githubProvider)
-    .then(user => {
-      console.log(user);
-      const {aditionalUserInfo} = user;
-      const {username, profile} = aditionalUserInfo;
-      const {avatar_url, blog} = profile;
+const mapUserFromFirebaseAuthToUser = (user) => {
+  const {displayName, email, photoURL } = user
 
-      return {
-        avatar: avatar_url,
-        username,
-        url: blog
+  return {
+    avatar: photoURL,
+    username: displayName,
+    email
+  }
+}
+
+export const onAuthStateChanged = (onChange) => {
+  return firebase
+    .auth()
+    .onAuthStateChanged(user => {
+      console.log('user change: ', user);
+      if (user !== null) {
+        const normalizedUser = mapUserFromFirebaseAuthToUser(user);
+        onChange(normalizedUser);       
       }
-    }).catch( err => {
-      console.log(err);
-    });
+    })
+}
+
+export const loginWithGithub = () => {
+  const githubProvider = new firebase.auth.GithubAuthProvider()
+  return firebase
+    .auth()
+    .signInWithPopup(githubProvider)
 }
