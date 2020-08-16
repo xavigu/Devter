@@ -1,28 +1,28 @@
-import { useEffect, useState } from 'react'
-import Head from 'next/head'
-import AppLayout from '../components/AppLayout'
-import Button from '../components/Button'
-import GitHub from '../components/Icons/Github'
-import { colors } from '../styles/theme'
-import { loginWithGithub, onAuthStateChanged } from '../firebase/client'
+import { useEffect, useState } from "react";
+import Head from "next/head";
+import AppLayout from "../components/AppLayout";
+import Button from "../components/Button";
+import GitHub from "../components/Icons/Github";
+import { colors } from "../styles/theme";
+import { loginWithGithub, onAuthStateChanged } from "../firebase/client";
 
-export default function Home () {
-  const [user, setUser] = useState(undefined)
+export default function Home() {
+  const [user, setUser] = useState(undefined);
 
   useEffect(() => {
-    onAuthStateChanged(setUser)
-  }, [])
+    onAuthStateChanged(setUser);
+  }, []);
 
   const handleClick = () => {
     loginWithGithub()
-      .then(user => {
-        console.log('user logged:', user)
-        setUser(user)
+      .then((user) => {
+        console.log("user logged:", user);
+        setUser(user);
       })
-      .catch(err => {
-        console.log(err)
-      })
-  }
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
@@ -33,27 +33,25 @@ export default function Home () {
 
       <AppLayout>
         <section>
-          <img src='/devter-logo.png' alt='Logo Devter'/>
-          <h1> Welcome to Devter
-            { user && user.avatar &&
-                <>
-                  <br/>
-                  <strong>{user.username}</strong>
-                </>
-            }
+          <img src="/devter-logo.png" alt="Logo Devter" />
+          <h1>
+            {" "}
+            Welcome to Devter
+            {user && user.avatar && (
+              <>
+                <br />
+                <strong>{user.username}</strong>
+              </>
+            )}
           </h1>
           <h2>Talk about development with developers</h2>
           <div>
-            {
-              !user &&
-                <Button onClick={handleClick}>
-                  <GitHub fill='#fff' width={20} height={20}/> Login with Github
-                </Button>
-            }
-            {
-              user && user.avatar &&
-                <img src = {user.avatar} />
-            }
+            {!user && (
+              <Button onClick={handleClick}>
+                <GitHub fill="#fff" width={20} height={20} /> Login with Github
+              </Button>
+            )}
+            {user && user.avatar && <img src={user.avatar} />}
           </div>
         </section>
       </AppLayout>
@@ -82,5 +80,5 @@ export default function Home () {
         }
       `}</style>
     </>
-  )
+  );
 }
