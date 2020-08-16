@@ -3,7 +3,7 @@ import css from 'styled-jsx/css'
 import { fonts, colors, breakpoints } from '../../styles/theme'
 import { addOpacityToColor } from '../../styles/utils'
 
-const backgroundColor = addOpacityToColor(colors.primary, 0.5);
+const backgroundColor = addOpacityToColor(colors.primary, 0.5)
 
 export const globalStyles = css.global`
     html,
@@ -23,7 +23,7 @@ export const globalStyles = css.global`
     }
 `
 
-export default css `
+export default css`
   div {
     display: grid;
     height: 100vh;

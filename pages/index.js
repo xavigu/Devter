@@ -6,8 +6,8 @@ import GitHub from '../components/Icons/Github'
 import { colors } from '../styles/theme'
 import { loginWithGithub, onAuthStateChanged } from '../firebase/client'
 
-export default function Home() {
-  const [user, setUser] = useState(undefined);
+export default function Home () {
+  const [user, setUser] = useState(undefined)
 
   useEffect(() => {
     onAuthStateChanged(setUser)
@@ -15,13 +15,13 @@ export default function Home() {
 
   const handleClick = () => {
     loginWithGithub()
-    .then(user => {
-      console.log('user logged:', user);
-      setUser(user);
-    })
-    .catch( err => {
-      console.log(err);
-    })
+      .then(user => {
+        console.log('user logged:', user)
+        setUser(user)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   return (
@@ -34,25 +34,25 @@ export default function Home() {
       <AppLayout>
         <section>
           <img src='/devter-logo.png' alt='Logo Devter'/>
-          <h1> Welcome to Devter 
-            { user && user.avatar && 
+          <h1> Welcome to Devter
+            { user && user.avatar &&
                 <>
-                <br/>
-                <strong>{user.username}</strong> 
+                  <br/>
+                  <strong>{user.username}</strong>
                 </>
-            } 
+            }
           </h1>
           <h2>Talk about development with developers</h2>
           <div>
-            { 
-              !user  &&
+            {
+              !user &&
                 <Button onClick={handleClick}>
                   <GitHub fill='#fff' width={20} height={20}/> Login with Github
-                </Button> 
+                </Button>
             }
-            { 
+            {
               user && user.avatar &&
-                <img src = {user.avatar} /> 
+                <img src = {user.avatar} />
             }
           </div>
         </section>
