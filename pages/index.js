@@ -5,6 +5,7 @@ import AppLayout from "components/AppLayout";
 import Avatar from "components/Avatar";
 import Button from "components/Button";
 import GitHub from "components/Icons/Github";
+import Logo from "components/Icons/Logo";
 
 import { colors } from "styles/theme";
 import { loginWithGithub, onAuthStateChanged } from "firebase/client";
@@ -36,7 +37,7 @@ export default function Home() {
 
       <AppLayout>
         <section>
-          <img src="/devter-logo.png" alt="Logo Devter" />
+          <Logo width={124} height={124} />
           <h1>
             {" "}
             Welcome to Devter
@@ -78,12 +79,12 @@ export default function Home() {
           width: 120px;
         }
         h1 {
-          color: ${colors.secondary};
+          color: ${colors.primary};
           font-weight: 800;
           margin-bottom: 16px;
         }
         h2 {
-          color: ${colors.primary};
+          color: ${colors.secondary};
           font-size: 20px;
           margin: 0;
         }
