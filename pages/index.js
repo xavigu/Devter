@@ -85,6 +85,7 @@ export default function Home() {
         }
         h2 {
           color: ${colors.secondary};
+          text-align: center;
           font-size: 20px;
           margin: 0;
         }

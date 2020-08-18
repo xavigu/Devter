@@ -1,13 +1,12 @@
 .container {
   display: flex;
-  flex-direction: column;
   align-items: center;
 }
 
 .avatar {
   border-radius: 9999px;
-  height: 124px;
-  width: 124px;
+  height: 49px;
+  width: 49px;
 }
 
 /* cuando el avatar esta acompañado de una etiqueta strong añadele margin */
