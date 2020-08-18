@@ -50,7 +50,7 @@ export default function Home() {
           </h1>
           <h2>Talk about development with developers</h2>
           <div>
-            {!user && (
+            {user === null && (
               <Button onClick={handleClick}>
                 <GitHub fill="#fff" width={20} height={20} /> Login with Github
               </Button>
