@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 import AppLayout from "components/AppLayout";
 import Avatar from "components/Avatar";
@@ -12,10 +13,15 @@ import { loginWithGithub, onAuthStateChanged } from "firebase/client";
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
+  const router = useRouter();
 
   useEffect(() => {
     onAuthStateChanged(setUser);
   }, []);
+
+  useEffect(() => {
+    user && router.replace("/home");
+  }, [user]);
 
   const handleClick = () => {
     loginWithGithub()
@@ -55,13 +61,7 @@ export default function Home() {
                 <GitHub fill="#fff" width={20} height={20} /> Login with Github
               </Button>
             )}
-            {user && user.avatar && (
-              <Avatar
-                alt={user.username}
-                src={user.avatar}
-                text={user.username}
-              />
-            )}
+            {user === undefined && <img src="./spinner.gif"></img>}
           </div>
         </section>
       </AppLayout>
