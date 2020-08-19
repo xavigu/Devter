@@ -33,10 +33,12 @@ export default function HomePage(params) {
       <style jsx>{`
         header {
           align-items: center;
-          border-bottom: 1px solid #ccc;
+          background: #ffffffaa;
+          backdrop-filter: blur(5px);
+          border-bottom: 1px solid #eee;
           height: 49px;
           display: flex;
-          position: fixed;
+          position: sticky;
           top: 0;
           width: 100%;
         }
@@ -44,6 +46,7 @@ export default function HomePage(params) {
         h2 {
           font-size: 21px;
           font-weight: 800;
+          padding-left: 15px;
         }
 
         article {
@@ -51,15 +54,12 @@ export default function HomePage(params) {
           padding: 10px 15px;
         }
 
-        section {
-          padding-top: 56px;
-        }
-
         nav {
-          border-top: 1px solid #ccc;
+          background: #fff;
+          border-top: 1px solid #eee;
           height: 49px;
           bottom: 0;
-          position: fixed;
+          position: sticky;
           width: 100%;
         }
       `}</style>
