@@ -2,6 +2,7 @@ import AppLayout from "components/AppLayout";
 import Button from "components/Button";
 import { useState } from "react";
 import useUser from "hooks/useUser";
+import { addDevit } from "firebase/client";
 
 export default function ComposeDeveet() {
   const user = useUser();
@@ -15,6 +16,12 @@ export default function ComposeDeveet() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(message);
+    addDevit({
+      avatar: user.avatar,
+      content: message,
+      userId: user.uid,
+      userName: user.displayName,
+    });
   };
 
   return (
