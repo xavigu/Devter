@@ -5,14 +5,28 @@ import useUser from "hooks/useUser";
 
 export default function ComposeDeveet() {
   const user = useUser();
+  const [message, setMessage] = useState("");
+
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setMessage(value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(message);
+  };
 
   return (
     <>
       <AppLayout>
-        <form>
-          <textarea placeholder="¿Qué esta pasando?"></textarea>
+        <form onSubmit={handleSubmit}>
+          <textarea
+            onChange={handleChange}
+            placeholder="¿Qué esta pasando?"
+          ></textarea>
           <div>
-            <Button>Devittear</Button>
+            <Button disabled={message.length === 0}>Devittear</Button>
           </div>
         </form>
       </AppLayout>
