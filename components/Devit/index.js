@@ -1,6 +1,9 @@
 import Avatar from "components/Avatar";
+import useUser from "hooks/useUser";
 
 export default function Devit({ avatar, username, message, id }) {
+  const user = useUser();
+
   return (
     <>
       <article>
