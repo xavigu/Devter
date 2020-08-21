@@ -62,11 +62,11 @@ export const fetchLatestDevits = () => {
         const { createdAt } = data;
         const id = doc.id;
 
-        // Format the date received to spanish correctly TODO
-        // const intl = new Intl.DateTimeFormat('es-ES');
-        // const normalizedCreatedAt = intl.format(new Date(createdAt.seconds)).toString();
-
-        const normalizedCreatedAt = new Date(createdAt.seconds).toString();
+        // Format the date received to spanish correctly (passing the date in miliseconds)
+        const intl = new Intl.DateTimeFormat("es-ES");
+        const normalizedCreatedAt = intl.format(
+          new Date(createdAt.seconds * 1000)
+        );
 
         return {
           ...data,
