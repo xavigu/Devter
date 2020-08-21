@@ -51,3 +51,28 @@ export const addDevit = ({ avatar, content, userId, userName }) => {
     sharedCount: 0,
   });
 };
+
+export const fetchLatestDevits = () => {
+  return db
+    .collection("devits")
+    .get()
+    .then(({ docs }) => {
+      return docs.map((doc) => {
+        const data = doc.data();
+        const { createdAt } = data;
+        const id = doc.id;
+
+        // Format the date received to spanish correctly TODO
+        // const intl = new Intl.DateTimeFormat('es-ES');
+        // const normalizedCreatedAt = intl.format(new Date(createdAt.seconds)).toString();
+
+        const normalizedCreatedAt = new Date(createdAt.seconds).toString();
+
+        return {
+          ...data,
+          id,
+          createdAt: normalizedCreatedAt,
+        };
+      });
+    });
+};
