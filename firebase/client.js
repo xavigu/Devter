@@ -61,17 +61,16 @@ export const fetchLatestDevits = () => {
         const data = doc.data();
         const { createdAt } = data;
         const id = doc.id;
-
         // Format the date received to spanish correctly (passing the date in miliseconds)
-        const intl = new Intl.DateTimeFormat("es-ES");
-        const normalizedCreatedAt = intl.format(
-          new Date(createdAt.seconds * 1000)
-        );
+        // const intl = new Intl.DateTimeFormat("es-ES");
+        // const normalizedCreatedAt = intl.format(
+        //   new Date(createdAt.seconds * 1000)
+        // );
 
         return {
           ...data,
           id,
-          createdAt: normalizedCreatedAt,
+          createdAt: +createdAt.toDate(), // Create date object of JS and transform to number (+)
         };
       });
     });
