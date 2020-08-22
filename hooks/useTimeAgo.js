@@ -1,8 +1,10 @@
+import { useEffect, useState } from "react";
+
 const DATE_UNITS = [
   ["day", 86400],
   ["hour", 2600],
   ["minute", 60],
-  ["hour", 1],
+  ["second", 1],
 ];
 
 const getDatesDiff = (timestamp) => {
@@ -12,18 +14,29 @@ const getDatesDiff = (timestamp) => {
   // desestructuration of the array of arrays
   for (const [unit, secondsInUnit] of DATE_UNITS) {
     if (Math.abs(elapsed) >= secondsInUnit || unit === "second") {
-      const value = Math.floor(elapsed / secondsInUnit);
+      const value = Math.round(elapsed / secondsInUnit);
       return { value, unit };
     }
   }
 };
 
 export default function useTimeAgo(timestamp) {
-  const { value, unit } = getDatesDiff(timestamp);
-  // relative time format with the API
+  // Init timeago value
+  const [timeago, setTimeago] = useState(() => getDatesDiff(timestamp));
+  // Refresh timeago data each hour
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newTimeAgo = getDatesDiff(timestamp);
+      setTimeago(newTimeAgo);
+      console.log(timeago);
+    }, 3600000);
+    return () => clearInterval(interval);
+  }, [timestamp]);
+
   const rtf = new Intl.RelativeTimeFormat(navigator.language, {
     style: "short",
   });
-  console.log(value, unit);
+
+  const { value, unit } = timeago;
   return rtf.format(value, unit);
 }
