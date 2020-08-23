@@ -4,6 +4,7 @@ import { useState } from "react";
 import useUser from "hooks/useUser";
 import { addDevit } from "firebase/client";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const COMPOSE_STATES = {
   USER_NOT_KNOWN: 0,
@@ -47,6 +48,9 @@ export default function ComposeDeveet() {
   return (
     <>
       <AppLayout>
+        <Head>
+          <title>Crear un Deveet / Devter</title>
+        </Head>
         <form onSubmit={handleSubmit}>
           <textarea
             onChange={handleChange}
