@@ -5,6 +5,7 @@ import useUser from "hooks/useUser";
 import { addDevit, uploadImage } from "firebase/client";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import Avatar from "components/Avatar";
 
 const COMPOSE_STATES = {
   USER_NOT_KNOWN: 0,
@@ -95,24 +96,31 @@ export default function ComposeDeveet() {
         <Head>
           <title>Crear un Deveet / Devter</title>
         </Head>
-        <form onSubmit={handleSubmit}>
-          <textarea
-            onChange={handleChange}
-            onDragEnter={handleDragEnter}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-            placeholder="¿Qué esta pasando?"
-          ></textarea>
-          {imgURL && (
-            <section>
-              <button onClick={() => setImgURL(null)}>X</button>
-              <img src={imgURL} />
+        <section className="form-container">
+          {user && (
+            <section className="avatar-container">
+              <Avatar src={user.avatar} />
             </section>
           )}
-          <div>
-            <Button disabled={isButtonDisabled}>Devittear</Button>
-          </div>
-        </form>
+          <form onSubmit={handleSubmit}>
+            <textarea
+              onChange={handleChange}
+              onDragEnter={handleDragEnter}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              placeholder="¿Qué esta pasando?"
+            ></textarea>
+            {imgURL && (
+              <section className="remove-img">
+                <button onClick={() => setImgURL(null)}>X</button>
+                <img src={imgURL} />
+              </section>
+            )}
+            <div>
+              <Button disabled={isButtonDisabled}>Devittear</Button>
+            </div>
+          </form>
+        </section>
       </AppLayout>
       <style jsx>{`
         div {
@@ -136,7 +144,17 @@ export default function ComposeDeveet() {
           width: 100%;
         }
 
-        section {
+        .form-container {
+          align-items: flex-start;
+          display: flex;
+        }
+
+        .avatar-container {
+          padding-top: 20px;
+          padding-left: 10px;
+        }
+
+        .remove-img {
           position: relative;
         }
 
@@ -153,7 +171,7 @@ export default function ComposeDeveet() {
           position: absolute;
         }
 
-        section > img {
+        .remove-img > img {
           border-radius: 10px;
           height: auto;
           width: 100%;
