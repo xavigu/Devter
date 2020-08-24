@@ -76,6 +76,7 @@ export default function ComposeDeveet() {
       content: message,
       userId: user.uid,
       userName: user.username,
+      img: imgURL,
     })
       .then(() => {
         router.push("/home");

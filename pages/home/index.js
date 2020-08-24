@@ -34,12 +34,13 @@ export default function HomePage(params) {
         </header>
         <section>
           {timeline.map(
-            ({ id, createdAt, userName, userId, avatar, content }) => (
+            ({ id, createdAt, userName, userId, img, avatar, content }) => (
               <Devit
                 avatar={avatar}
                 createdAt={createdAt}
                 id={id}
                 key={id}
+                img={img}
                 content={content}
                 userName={userName}
                 userId={userId}
@@ -48,7 +49,7 @@ export default function HomePage(params) {
           )}
         </section>
         <nav>
-          <Link href="/compose/deveet">
+          <Link href="/home">
             <a>
               <Home width={32} height={32} stroke="#09f" />
             </a>
@@ -58,7 +59,7 @@ export default function HomePage(params) {
               <Search width={32} height={32} stroke="#09f" />
             </a>
           </Link>
-          <Link href="/home">
+          <Link href="/compose/deveet">
             <a>
               <Create width={32} height={32} stroke="#09f" />
             </a>

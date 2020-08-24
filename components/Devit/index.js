@@ -6,6 +6,7 @@ export default function Devit({
   createdAt,
   userName,
   userId,
+  img,
   content,
   id,
 }) {
@@ -24,6 +25,7 @@ export default function Devit({
             <date>{timeago}</date>
           </header>
           <p>{content}</p>
+          {img && <img src={img}></img>}
         </section>
       </article>
       <style jsx>{`
@@ -42,6 +44,12 @@ export default function Devit({
         date {
           color: #555;
           font-size: 14px;
+        }
+        img {
+          border-radius: 10px;
+          margin-top: 10px;
+          height: auto;
+          width: 100%;
         }
       `}</style>
     </>
